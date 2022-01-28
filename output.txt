@@ -1,0 +1,203 @@
+❯ docker build -t dev-selenium .
+[+] Building 119.7s (15/15) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                     0.1s
+ => => transferring dockerfile: 803B                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                        0.0s
+ => => transferring context: 2B                                                                                                                          0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:20.04                                                                                          0.8s
+ => CACHED [ 1/11] FROM docker.io/library/ubuntu:20.04@sha256:b5a61709a9a44284d88fb12e5c48db0409cfad5b69d4ff8224077c57302df9cf                           0.0s
+ => [ 2/11] WORKDIR /home/selenium                                                                                                                       0.0s
+ => [ 3/11] RUN apt update                                                                                                                               7.8s
+ => [ 4/11] RUN apt install -y git vim python3-pip tox ruby xvfb curl wget openjdk-11-jdk-headless &&     rm -rf /var/lib/apt/lists/* &&     apt clean  98.2s
+ => [ 5/11] RUN wget -O /usr/local/bin/bazel https://github.com/bazelbuild/bazelisk/releases/download/v1.11.0/bazelisk-linux-amd64                       1.6s
+ => [ 6/11] RUN chmod +x /usr/local/bin/bazel                                                                                                            0.3s
+ => [ 7/11] RUN wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz   &  0.9s
+ => [ 8/11] RUN chmod +x /usr/local/bin/geckodriver                                                                                                      0.4s
+ => [ 9/11] RUN mv /usr/local/bin/geckodriver /usr/local/bin/geckochromedriver                                                                           0.3s
+ => [10/11] RUN pip install tox                                                                                                                          1.3s
+ => [11/11] RUN ln -s /usr/bin/python3 /usr/bin/python                                                                                                   0.3s
+ => exporting to image                                                                                                                                   7.7s
+ => => exporting layers                                                                                                                                  7.7s
+ => => writing image sha256:b24c918715f80f8cbff6af998cdc492a33fc4e8484ec740dadfb8117855e03b6                                                             0.0s
+ => => naming to docker.io/library/dev-selenium                                                                                                          0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+selenium on  trunk 2m529ms
+❯ docker run -it --rm -v /Users/jeromep/Desktop/work/src/OSS/selenium:/home/selenium dev-selenium bash
+root@8c842bcce295:/# cd home/selenium/
+root@8c842bcce295:/home/selenium# bazel build grid
+2022/01/28 09:48:17 Downloading https://releases.bazel.build/4.2.1/release/bazel-4.2.1-linux-x86_64...
+Extracting Bazel installation...
+Starting local Bazel server and connecting to it...
+(09:48:28) INFO: Invocation ID: a8fb6190-1330-4187-93d7-a08f1b95f05d
+(09:48:28) INFO: Streaming build results to: https://ge-unstable.grdev.net/build/a8fb6190-1330-4187-93d7-a08f1b95f05d
+(09:48:28) INFO: Current date is 2022-01-28
+(09:48:28) Loading:
+(09:48:28) Loading: 0 packages loaded
+(09:48:29) Loading: 0 packages loaded
+(09:48:30) Loading: 0 packages loaded
+(09:48:31) Loading: 0 packages loaded
+(09:48:32) Loading: 0 packages loaded
+(09:48:34) Loading: 0 packages loaded
+(09:48:37) Loading: 0 packages loaded
+(09:48:38) Loading: 0 packages loaded
+(09:48:59) Loading: 0 packages loaded
+(09:49:18) Loading: 0 packages loaded
+(09:49:25) Analyzing: target //:grid (1 packages loaded, 0 targets configured)
+(09:49:34) Analyzing: target //:grid (23 packages loaded, 26 targets configured)
+(09:49:44) Analyzing: target //:grid (34 packages loaded, 417 targets configured)
+(09:49:56) Analyzing: target //:grid (162 packages loaded, 1271 targets configured)
+(09:50:09) Analyzing: target //:grid (352 packages loaded, 2857 targets configured)
+(09:50:28) Analyzing: target //:grid (354 packages loaded, 3955 targets configured)
+(09:51:05) Analyzing: target //:grid (354 packages loaded, 4055 targets configured)
+(09:51:52) Analyzing: target //:grid (354 packages loaded, 4055 targets configured)
+(09:52:53) Analyzing: target //:grid (354 packages loaded, 4055 targets configured)
+(09:54:12) Analyzing: target //:grid (354 packages loaded, 4055 targets configured)
+(09:55:07) INFO: Analyzed target //:grid (1435 packages loaded, 64266 targets configured).
+(09:55:07)
+(09:55:07) INFO: Found 1 target...
+(09:55:07) [0 / 13] [Prepa] BazelWorkspaceStatusAction stable-status.txt ... (2 actions, 0 running)
+(09:56:07) [974 / 2,018] Action external/bazel_tools/tools/jdk/platformclasspath.jar; 56s remote-cache, processwrapper-sandbox ... (4 actions running)
+(09:57:53) INFO: From Action javascript/grid-ui/build:
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  233.76 kB  build/static/js/main.3259def5.js
+  227 B      build/static/css/main.ce2bf04a.css
+
+The project was built assuming it is hosted at /ui/.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+(09:57:53) [983 / 2,069] Action external/bazel_tools/tools/jdk/platformclasspath.jar; 163s remote-cache, processwrapper-sandbox ... (7 actions, 6 running)
+(09:59:28) [984 / 2,069] Action external/bazel_tools/tools/jdk/platformclasspath.jar; 258s remote-cache, processwrapper-sandbox ... (6 actions running)
+(10:01:18) WARNING: Writing to Remote Cache:
+com.google.devtools.build.lib.remote.BulkTransferException: Error while uploading artifact with digest '9fe0a8f09f59f3dbf8866d32c2739b1cb26e0b2f423fa62a847dd4a01b39bbd9/117560024'
+	at com.google.devtools.build.lib.remote.RemoteCache.waitForBulkTransfer(RemoteCache.java:291)
+	at com.google.devtools.build.lib.remote.RemoteCache.uploadOutputs(RemoteCache.java:265)
+	at com.google.devtools.build.lib.remote.RemoteCache.upload(RemoteCache.java:191)
+	at com.google.devtools.build.lib.remote.RemoteCache.upload(RemoteCache.java:210)
+	at com.google.devtools.build.lib.remote.RemoteExecutionService.uploadOutputs(RemoteExecutionService.java:415)
+	at com.google.devtools.build.lib.remote.RemoteSpawnCache$1.store(RemoteSpawnCache.java:199)
+	at com.google.devtools.build.lib.exec.AbstractSpawnStrategy.exec(AbstractSpawnStrategy.java:149)
+	at com.google.devtools.build.lib.exec.AbstractSpawnStrategy.exec(AbstractSpawnStrategy.java:106)
+	at com.google.devtools.build.lib.actions.SpawnStrategy.beginExecution(SpawnStrategy.java:47)
+	at com.google.devtools.build.lib.exec.SpawnStrategyResolver.beginExecution(SpawnStrategyResolver.java:65)
+	at com.google.devtools.build.lib.analysis.actions.SpawnAction.beginExecution(SpawnAction.java:331)
+	at com.google.devtools.build.lib.actions.Action.execute(Action.java:127)
+	at com.google.devtools.build.lib.skyframe.SkyframeActionExecutor$5.execute(SkyframeActionExecutor.java:855)
+	at com.google.devtools.build.lib.skyframe.SkyframeActionExecutor$ActionRunner.continueAction(SkyframeActionExecutor.java:1016)
+	at com.google.devtools.build.lib.skyframe.SkyframeActionExecutor$ActionRunner.run(SkyframeActionExecutor.java:975)
+	at com.google.devtools.build.lib.skyframe.ActionExecutionState.runStateMachine(ActionExecutionState.java:129)
+	at com.google.devtools.build.lib.skyframe.ActionExecutionState.getResultOrDependOnFuture(ActionExecutionState.java:81)
+	at com.google.devtools.build.lib.skyframe.SkyframeActionExecutor.executeAction(SkyframeActionExecutor.java:472)
+	at com.google.devtools.build.lib.skyframe.ActionExecutionFunction.checkCacheAndExecuteIfNeeded(ActionExecutionFunction.java:834)
+	at com.google.devtools.build.lib.skyframe.ActionExecutionFunction.compute(ActionExecutionFunction.java:307)
+	at com.google.devtools.build.skyframe.AbstractParallelEvaluator$Evaluate.run(AbstractParallelEvaluator.java:477)
+	at com.google.devtools.build.lib.concurrent.AbstractQueueVisitor$WrappedRunnable.run(AbstractQueueVisitor.java:398)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+	Suppressed: java.io.IOException: Error while uploading artifact with digest '9fe0a8f09f59f3dbf8866d32c2739b1cb26e0b2f423fa62a847dd4a01b39bbd9/117560024'
+		at com.google.devtools.build.lib.remote.ByteStreamUploader.lambda$uploadBlobAsync$1(ByteStreamUploader.java:265)
+		at com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture.doFallback(AbstractCatchingFuture.java:192)
+		at com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture.doFallback(AbstractCatchingFuture.java:179)
+		at com.google.common.util.concurrent.AbstractCatchingFuture.run(AbstractCatchingFuture.java:124)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.setException(AbstractFuture.java:760)
+		at com.google.common.util.concurrent.AbstractTransformFuture.run(AbstractTransformFuture.java:100)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.setException(AbstractFuture.java:760)
+		at com.google.common.util.concurrent.AbstractTransformFuture.run(AbstractTransformFuture.java:100)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.setFuture(AbstractFuture.java:800)
+		at com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture.setResult(AbstractCatchingFuture.java:203)
+		at com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture.setResult(AbstractCatchingFuture.java:179)
+		at com.google.common.util.concurrent.AbstractCatchingFuture.run(AbstractCatchingFuture.java:133)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.setFuture(AbstractFuture.java:800)
+		at com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture.setResult(AbstractCatchingFuture.java:203)
+		at com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture.setResult(AbstractCatchingFuture.java:179)
+		at com.google.common.util.concurrent.AbstractCatchingFuture.run(AbstractCatchingFuture.java:133)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.setFuture(AbstractFuture.java:800)
+		at com.google.common.util.concurrent.AbstractTransformFuture$AsyncTransformFuture.setResult(AbstractTransformFuture.java:224)
+		at com.google.common.util.concurrent.AbstractTransformFuture$AsyncTransformFuture.setResult(AbstractTransformFuture.java:202)
+		at com.google.common.util.concurrent.AbstractTransformFuture.run(AbstractTransformFuture.java:163)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.set(AbstractFuture.java:738)
+		at com.google.common.util.concurrent.AbstractCatchingFuture.run(AbstractCatchingFuture.java:110)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.setFuture(AbstractFuture.java:800)
+		at com.google.common.util.concurrent.AbstractTransformFuture$AsyncTransformFuture.setResult(AbstractTransformFuture.java:224)
+		at com.google.common.util.concurrent.AbstractTransformFuture$AsyncTransformFuture.setResult(AbstractTransformFuture.java:202)
+		at com.google.common.util.concurrent.AbstractTransformFuture.run(AbstractTransformFuture.java:163)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.set(AbstractFuture.java:738)
+		at com.google.common.util.concurrent.AbstractCatchingFuture.run(AbstractCatchingFuture.java:110)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.set(AbstractFuture.java:738)
+		at com.google.common.util.concurrent.AbstractTransformFuture$TransformFuture.setResult(AbstractTransformFuture.java:247)
+		at com.google.common.util.concurrent.AbstractTransformFuture.run(AbstractTransformFuture.java:163)
+		at com.google.common.util.concurrent.DirectExecutor.execute(DirectExecutor.java:30)
+		at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:1174)
+		at com.google.common.util.concurrent.AbstractFuture.complete(AbstractFuture.java:969)
+		at com.google.common.util.concurrent.AbstractFuture.set(AbstractFuture.java:738)
+		at io.grpc.stub.ClientCalls$GrpcFuture.set(ClientCalls.java:558)
+		at io.grpc.stub.ClientCalls$UnaryStreamToFuture.onClose(ClientCalls.java:531)
+		at io.grpc.PartialForwardingClientCallListener.onClose(PartialForwardingClientCallListener.java:39)
+		at io.grpc.ForwardingClientCallListener.onClose(ForwardingClientCallListener.java:23)
+		at io.grpc.ForwardingClientCallListener$SimpleForwardingClientCallListener.onClose(ForwardingClientCallListener.java:40)
+		at com.google.devtools.build.lib.remote.ReferenceCountedChannel$ConnectionCleanupCall$1.onClose(ReferenceCountedChannel.java:84)
+		at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:617)
+		at io.grpc.internal.ClientCallImpl.access$300(ClientCallImpl.java:70)
+		at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:803)
+		at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:782)
+		at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+		at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:123)
+		... 3 more
+	Caused by: io.grpc.StatusRuntimeException: DEADLINE_EXCEEDED: deadline exceeded after 59.999597300s. [remote_addr=ge-unstable.grdev.net/54.82.253.99:443]
+		at io.grpc.Status.asRuntimeException(Status.java:524)
+		at com.google.devtools.build.lib.remote.ByteStreamUploader$AsyncUpload$1.onClose(ByteStreamUploader.java:551)
+		... 13 more
+(10:01:18) [985 / 2,069] Action external/bazel_tools/tools/jdk/platformclasspath.jar; 368s remote-cache, processwrapper-sandbox ... (5 actions, 4 running)
+(10:03:19) [1,921 / 2,069] Compiling 698 JavaScript files to javascript/atoms/fragments/find-elements.js; 12s remote-cache, worker ... (5 actions, 4 running)
+(10:05:42) [2,067 / 2,069] MergeJars java/src/org/openqa/selenium/grid/add-build-info.jar; 11s remote-cache, processwrapper-sandbox
+Target //java/src/org/openqa/selenium/grid:executable-grid up-to-date:
+  bazel-bin/java/src/org/openqa/selenium/grid/selenium
+(10:07:03) INFO: Elapsed time: 1119.758s, Critical Path: 617.86s
+(10:07:03) INFO: 2069 processes: 793 internal, 415 processwrapper-sandbox, 861 worker.
+(10:07:03) INFO: Build completed successfully, 2069 total actions
+(10:07:03) WARNING: BES was not properly closed
+(10:07:03) INFO: Build completed successfully, 2069 total actions
+(10:07:03) ERROR: The Build Event Protocol upload failed: Not retrying publishBuildEvents, no more attempts left: status='Status{code=INTERNAL, description=HTTP/2 error code: PROTOCOL_ERROR
+Received Rst Stream, cause=null}' INTERNAL: INTERNAL: HTTP/2 error code: PROTOCOL_ERROR
+Received Rst Stream INTERNAL: INTERNAL: HTTP/2 error code: PROTOCOL_ERROR
+Received Rst Stream
+(10:07:03) INFO: Build completed successfully, 2069 total actions
+root@8c842bc
