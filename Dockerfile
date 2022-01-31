@@ -6,7 +6,7 @@ WORKDIR /home/selenium
 
 RUN apt update
 
-RUN apt install -y git vim python3-pip tox ruby xvfb curl wget openjdk-11-jdk-headless && \
+RUN apt install -y git vim python3-pip tox ruby xvfb curl wget openjdk-11-jdk-headless firefox && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
 
@@ -16,7 +16,6 @@ RUN chmod +x /usr/local/bin/bazel
 RUN wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz \
   && tar -C /usr/local/bin -zxf /tmp/geckodriver.tar.gz
 RUN chmod +x /usr/local/bin/geckodriver
-RUN mv /usr/local/bin/geckodriver /usr/local/bin/geckochromedriver
 
 RUN pip install tox
 
