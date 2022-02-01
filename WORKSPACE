@@ -10,7 +10,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "apple_rules_lint",
-    sha256 = "8feab4b08a958b10cb2abb7f516652cd770b582b36af6477884b3bba1f2f0726",
+    sha256 = "d3cd8771ed3c020a91b29b021195b3938d9f0bcc21a16130cf3559ad06af0cd2",
     strip_prefix = "apple_rules_lint-0.1.1",
     url = "https://github.com/apple/apple_rules_lint/archive/0.1.1.zip",
 )
@@ -226,7 +226,7 @@ container_pull(
 
 http_archive(
     name = "io_bazel_rules_k8s",
-    sha256 = "5d4e71b9e34065222115e85bb6dc3bfd80d7c926fafbcf6b01e04e99769c7ca1",
+    sha256 = "bb27275e4a77db3804770931a42a2e44a321f1cfd07018f9b3ed2045eb715544",
     strip_prefix = "rules_k8s-32df7190a9b2534eb5d15e6c018b81fd345a0cf8",
     url = "https://github.com/bazelbuild/rules_k8s/archive/32df7190a9b2534eb5d15e6c018b81fd345a0cf8.zip",
 )
